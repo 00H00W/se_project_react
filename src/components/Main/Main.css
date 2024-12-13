@@ -1,0 +1,11 @@
+.cards__text {
+  margin: 40px 0 34px;
+}
+
+.cards__list {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: left;
+  gap: 20px;
+  padding: 0;
+}
