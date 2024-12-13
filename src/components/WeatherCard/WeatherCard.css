@@ -1,0 +1,17 @@
+.weather-card {
+  position: relative;
+  display: flex;
+  height: 80px;
+  border-radius: 12px;
+  overflow: hidden;
+  justify-content: right;
+}
+
+.weather-card__temperature {
+  margin: 0;
+  font-size: 36px;
+  line-height: 40px;
+  position: absolute;
+  top: 20px;
+  left: 16px;
+}
