@@ -1,0 +1,21 @@
+.modal__content_type_image {
+  padding: 0;
+  overflow: hidden;
+}
+
+.modal__image {
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+
+.modal__caption {
+  padding: 20px 32px 32px;
+}
+
+.modal__caption-header {
+  margin: 0 0 12px;
+}
+
+.modal__caption-weather {
+  margin: 0;
+}
