@@ -3,9 +3,10 @@
 }
 
 .cards__list {
-  display: grid;
-  grid-auto-flow: column;
-  justify-content: left;
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   padding: 0;
+  margin: 0;
+  list-style-type: none;
 }
