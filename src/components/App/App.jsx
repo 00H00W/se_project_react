@@ -1,19 +1,32 @@
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
+import { getWeather, processWeatherData } from "../../utils/weatherApi";
+import { location, APIkey } from "../../utils/constants";
 
 function App() {
-  const [weatherData, setWeatherData] = useState({ type: "cold" });
+  const [weatherData, setWeatherData] = useState({
+    type: "cold",
+    temp: { F: 999, C: 999 },
+    city: "City",
+  });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
 
   const closeModals = () => {
     setActiveModal("");
   };
+
+  useEffect(() => {
+    getWeather(location, APIkey)
+      .then((data) => {
+        setWeatherData(processWeatherData(data));
+      })
+      .catch(console.error);
+  }, []);
 
   return (
     <div className="app">
@@ -22,6 +35,7 @@ function App() {
           onAddButtonClick={() => {
             setActiveModal("add-garment");
           }}
+          city={weatherData.city}
         />
         <Main
           weatherData={weatherData}

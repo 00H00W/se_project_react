@@ -2,11 +2,17 @@ import "./Header.css";
 import logoImg from "../../assets/logo.svg";
 import avatarImg from "../../assets/avatar.png";
 
-function Header({ onAddButtonClick }) {
+function Header({ onAddButtonClick, city }) {
+  const currentDate = new Date().toLocaleString("default", {
+    month: "long",
+    day: "numeric",
+  });
   return (
     <header className="header">
       <img className="header__logo" src={logoImg} alt="WTWR Logo" />
-      <p className="header__info">June 15, New York</p>
+      <p className="header__info">
+        {currentDate}, {city}
+      </p>
       <button
         onClick={onAddButtonClick}
         type="button"
