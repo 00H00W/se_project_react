@@ -12,7 +12,8 @@ export const processWeatherData = (weatherData) => {
   result.city = weatherData.name;
   result.temp = { F: weatherData.main.temp };
   result.type = getWeatherType(result.temp.F);
-  result.condition = weatherData.weather[0].id;
+  result.conditionName = weatherData.weather[0].main;
+  result.conditionId = weatherData.weather[0].id;
   result.isDay = getIsDay(weatherData.sys, Date.now() / 1000);
   return result;
 };

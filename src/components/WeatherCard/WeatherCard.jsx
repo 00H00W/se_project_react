@@ -6,7 +6,13 @@ function WeatherCard({ weatherData }) {
   return (
     <section className="weather-card">
       <p className="weather-card__temperature">{weatherData.temp.F}&deg;F</p>
-      <img src={url} alt="" className="weather-card__image" />
+      <img
+        src={url}
+        alt={`${weatherData.conditionName} ${
+          weatherData.isDay ? "Day" : "Night"
+        }`}
+        className="weather-card__image"
+      />
     </section>
   );
 }
@@ -15,7 +21,7 @@ export default WeatherCard;
 
 function getWeatherCondition(options, data) {
   const filter = options.filter(
-    (element) => data.condition >= element.condition
+    (element) => data.conditionId >= element.condition
   );
   let selectedCondition = options[0];
   if (filter.length > 0) selectedCondition = filter[0];
