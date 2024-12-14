@@ -3,7 +3,6 @@ import { weatherOptions } from "../../utils/constants";
 
 function WeatherCard({ weatherData }) {
   const url = getWeatherCondition(weatherOptions, weatherData);
-  console.log(url);
   return (
     <section className="weather-card">
       <p className="weather-card__temperature">{weatherData.temp.F}&deg;F</p>

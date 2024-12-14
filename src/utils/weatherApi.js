@@ -8,14 +8,12 @@ export const getWeather = ({ latitude, longitude }, APIkey) => {
 };
 
 export const processWeatherData = (weatherData) => {
-  console.log(weatherData);
   const result = {};
   result.city = weatherData.name;
   result.temp = { F: weatherData.main.temp };
   result.type = getWeatherType(result.temp.F);
   result.condition = weatherData.weather[0].id;
   result.isDay = getIsDay(weatherData.sys, Date.now() / 1000);
-  console.log(result);
   return result;
 };
 
