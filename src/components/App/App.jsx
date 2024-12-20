@@ -55,7 +55,7 @@ function App() {
       <ModalWithForm
         title="New garment"
         submit="Add garment"
-        activeModal={activeModal}
+        isOpen={activeModal === "add-garment"}
         onCloseButtonClick={closeModals}
       >
         <label htmlFor="name" className="modal__label">
@@ -111,7 +111,7 @@ function App() {
         onCloseButtonClick={(card) => {
           closeModals();
         }}
-        activeModal={activeModal}
+        isOpen={activeModal === "preview"}
         selectedCard={selectedCard}
       />
     </div>
