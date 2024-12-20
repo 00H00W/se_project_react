@@ -29,6 +29,11 @@ function App() {
       .catch(console.error);
   }, []);
 
+  // this sets the entire page to use the background color
+  {
+    document.body.style = "background: #f3f3f3;";
+  }
+
   return (
     <div className="app">
       <div className="app__content">
