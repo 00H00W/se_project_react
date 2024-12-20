@@ -9,6 +9,10 @@
   justify-content: center;
   align-items: center;
   visibility: hidden;
+
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
 }
 
 .modal_opened {
@@ -27,6 +31,9 @@
 
 .modal__title {
   margin: 0 0 24px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
 }
 .modal__close {
   position: absolute;
@@ -59,6 +66,10 @@
   padding: 0;
   background: none;
   width: 100%;
+
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
 }
 
 .modal__legend {
@@ -83,4 +94,7 @@
   border: none;
   border-radius: 4px;
   color: white;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
 }

@@ -14,8 +14,14 @@
 
 .modal__caption-header {
   margin: 0 0 12px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
 }
 
 .modal__caption-weather {
   margin: 0;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
 }
