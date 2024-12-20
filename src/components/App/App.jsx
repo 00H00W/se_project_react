@@ -17,7 +17,16 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
 
-  const closeModals = () => {
+  // can you elaborate on why functions should be declared beforehand
+  // to "prevent unexpected rerendering of the components"?
+  const openAddGarmentModal = () => {
+    setActiveModal("add-garment");
+  };
+  const openCardPreviewModal = (card) => {
+    setActiveModal("preview");
+    setSelectedCard(card);
+  };
+  const closeActiveModal = () => {
     setActiveModal("");
   };
 
@@ -29,34 +38,21 @@ function App() {
       .catch(console.error);
   }, []);
 
-  // this sets the entire page to use the background color
-  {
-    document.body.style = "background: #f3f3f3;";
-  }
-
   return (
     <div className="app">
       <div className="app__content">
         <Header
-          onAddButtonClick={() => {
-            setActiveModal("add-garment");
-          }}
+          onAddButtonClick={openAddGarmentModal}
           city={weatherData.city}
         />
-        <Main
-          weatherData={weatherData}
-          onCardClicked={(card) => {
-            setActiveModal("preview");
-            setSelectedCard(card);
-          }}
-        />
+        <Main weatherData={weatherData} onCardClicked={openCardPreviewModal} />
         <Footer />
       </div>
       <ModalWithForm
         title="New garment"
         submit="Add garment"
         isOpen={activeModal === "add-garment"}
-        onCloseButtonClick={closeModals}
+        onCloseButtonClick={closeActiveModal}
       >
         <label htmlFor="name" className="modal__label">
           Name{" "}
@@ -108,9 +104,7 @@ function App() {
         </fieldset>
       </ModalWithForm>
       <ItemModal
-        onCloseButtonClick={(card) => {
-          closeModals();
-        }}
+        onCloseButtonClick={closeActiveModal}
         isOpen={activeModal === "preview"}
         selectedCard={selectedCard}
       />

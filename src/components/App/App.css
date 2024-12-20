@@ -1,10 +1,11 @@
 .app {
   background-color: #f3f3f3;
   font-family: "CabinetGrotesk", "Times New Roman", Times, serif;
+  min-height: 100vh;
 }
 
 .app__content {
   max-width: 1360px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 40px 24px;
 }
