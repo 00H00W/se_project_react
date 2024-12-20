@@ -5,6 +5,11 @@
   border-radius: 12px;
   overflow: hidden;
   justify-content: right;
+
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.111;
+  color: white;
 }
 
 .weather-card__temperature {

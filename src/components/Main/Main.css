@@ -1,3 +1,9 @@
+.cards {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.24;
+}
+
 .cards__text {
   margin: 40px 0 34px;
 }

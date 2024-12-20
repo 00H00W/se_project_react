@@ -20,6 +20,11 @@
   background-color: #fff;
   border-radius: 4px;
   padding: 2px 12px;
+
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .item-card__image {
