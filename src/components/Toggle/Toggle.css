@@ -1,0 +1,107 @@
+.toggle {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.toggle__label {
+  box-sizing: border-box;
+  width: 56px;
+  height: 28px;
+  border-style: solid;
+  border-radius: 20px;
+  border-color: rgba(126, 126, 126, 1);
+  border-width: 2px;
+  position: relative;
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+  transition: 0.2s;
+}
+
+.toggle__label:hover {
+  border-color: rgba(0, 0, 0, 1);
+}
+
+.toggle__button {
+  display: block;
+  top: -2px;
+  left: -2px;
+  right: auto;
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+  background-color: black;
+  position: absolute;
+  transition: 0.2s;
+}
+.toggle__label:hover .toggle__button {
+  transform: translateX(2px);
+}
+.toggle:checked + .toggle__label:hover .toggle__button {
+  transform: translateX(calc(100% - 2px));
+}
+
+.toggle__container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.toggle__value {
+  z-index: 1;
+  width: 28px;
+  text-align: center;
+  user-select: none;
+  transition: 0.2s;
+}
+
+.toggle__value--inactive {
+  color: rgba(0, 0, 0, 0.5);
+}
+.toggle__label:hover .toggle__value--inactive {
+  color: black;
+}
+.toggle__value--active {
+  color: white;
+}
+/* .react-switch-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  width: 100px;
+  height: 50px;
+  background: grey;
+  border-radius: 100px;
+  position: relative;
+  transition: background-color 0.2s;
+} */
+
+/* .react-switch-label .react-switch-button {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 45px;
+  height: 45px;
+  border-radius: 45px;
+  transition: 0.2s;
+  background: #fff;
+  box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
+} */
+
+.toggle:checked + .toggle__label .toggle__button {
+  /* left: calc(100% - 2px); */
+  /* margin-left: auto; */
+  /* left: auto; */
+  /* right: -2px; */
+
+  transform: translateX(calc(100%));
+}
+/* .react-switch-label:active .react-switch-button {
+  width: 60px;
+} */
+
+/* Work on toggle transition animation */

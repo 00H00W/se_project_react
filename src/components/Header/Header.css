@@ -16,8 +16,10 @@
   margin: 0;
 }
 
-.header__add-clothes-button {
+.header__units-toggle {
   margin-left: auto;
+}
+.header__add-clothes-button {
   margin-right: 20px;
   border: none;
   background: none;

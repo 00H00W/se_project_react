@@ -1,18 +1,33 @@
 import "./Header.css";
 import logoImg from "../../assets/logo.svg";
 import avatarImg from "../../assets/avatar.png";
+import React from "react";
+import Toggle from "../Toggle/Toggle";
 
 function Header({ onAddButtonClick, city }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
+
+  const [checked, setChecked] = React.useState(false);
+
+  const handleChange = () => {
+    setChecked(!checked);
+  };
+
   return (
     <header className="header">
       <img className="header__logo" src={logoImg} alt="WTWR Logo" />
       <p className="header__info">
         {currentDate}, {city}
       </p>
+      {/* <label className="header__units-toggle">
+        <input type="checkbox" checked={checked} onChange={handleChange} />
+        My Value
+      </label> */}
+      <p>Is "My Value" checked? {checked.toString()}</p>
+      <Toggle checked={checked} onChange={handleChange} />
       <button
         onClick={onAddButtonClick}
         type="button"
