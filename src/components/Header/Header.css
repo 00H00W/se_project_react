@@ -13,14 +13,11 @@
 }
 
 .header__info {
-  margin: 0;
+  margin: 0 auto 0 0;
 }
 
-.header__units-toggle {
-  margin-left: auto;
-}
 .header__add-clothes-button {
-  margin-right: 20px;
+  margin: 0 20px;
   border: none;
   background: none;
   padding: 0;

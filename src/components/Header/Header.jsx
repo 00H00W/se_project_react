@@ -22,11 +22,6 @@ function Header({ onAddButtonClick, city }) {
       <p className="header__info">
         {currentDate}, {city}
       </p>
-      {/* <label className="header__units-toggle">
-        <input type="checkbox" checked={checked} onChange={handleChange} />
-        My Value
-      </label> */}
-      <p>Is "My Value" checked? {checked.toString()}</p>
       <Toggle checked={checked} onChange={handleChange} />
       <button
         onClick={onAddButtonClick}
