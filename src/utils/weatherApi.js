@@ -10,7 +10,13 @@ export const getWeather = ({ latitude, longitude }, APIkey) => {
 export const processWeatherData = (weatherData) => {
   const result = {};
   result.city = weatherData.name;
-  result.temp = { F: weatherData.main.temp };
+  result.temp = {
+    F: weatherData.main.temp,
+    C:
+      Math.round(
+        (((weatherData.main.temp - 32) * 5) / 9 + Number.EPSILON) * 100
+      ) / 100,
+  };
   result.type = getWeatherType(result.temp.F);
   result.conditionName = weatherData.weather[0].main;
   result.conditionId = weatherData.weather[0].id;
