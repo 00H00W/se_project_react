@@ -1,5 +1,6 @@
 import "./ModalWithForm.css";
 import closeIcon from "../../assets/close-icon.svg";
+import React from "react";
 
 function ModalWithForm({
   children,
@@ -9,6 +10,14 @@ function ModalWithForm({
   onCloseButtonClick,
   onSubmit,
 }) {
+  const [valid, setValidity] = React.useState("false");
+
+  const checkFormValidity = (e) => {
+    console.log("Haiii UwU");
+    console.log(e.currentTarget.checkValidity());
+    setValidity(e.currentTarget.checkValidity());
+  };
+
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__content">
@@ -20,9 +29,17 @@ function ModalWithForm({
         >
           <img src={closeIcon} alt="Close Icon" />
         </button>
-        <form className="modal__form" onSubmit={onSubmit}>
+        <form
+          className="modal__form"
+          onChange={checkFormValidity}
+          onSubmit={onSubmit}
+        >
           {children}
-          <button type="submit" className="modal__submit-button">
+          <button
+            disabled={!valid}
+            type="submit"
+            className="modal__submit-button"
+          >
             {submit}
           </button>
         </form>
