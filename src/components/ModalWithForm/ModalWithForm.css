@@ -57,6 +57,12 @@
 .modal__label {
   margin: 0 0 8px;
 }
+.modal__label--radio {
+  color: rgba(0, 0, 0, 0.5);
+}
+.modal__label--radio:has(> .modal__radio:checked) {
+  color: black;
+}
 
 .modal__input {
   display: block;
@@ -85,6 +91,7 @@
 
 .modal__radio {
   margin-right: 8px;
+  accent-color: black;
 }
 
 .modal__submit-button {
@@ -97,4 +104,8 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 1.25;
+}
+
+.modal__submit-button:hover {
+  background-color: rgba(0, 0, 0, 0.6);
 }
