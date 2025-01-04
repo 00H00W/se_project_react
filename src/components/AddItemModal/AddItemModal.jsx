@@ -48,6 +48,7 @@ function AddItemModal({ closeActiveModal, isOpen, onAddItem }) {
           placeholder="Name"
           value={name}
           onChange={handleNameChange}
+          required
         />
       </label>
       <label htmlFor="imageUrl" className="modal__label">
@@ -59,6 +60,7 @@ function AddItemModal({ closeActiveModal, isOpen, onAddItem }) {
           placeholder="Image URL"
           value={image}
           onChange={handleImageChange}
+          required
         />
       </label>
       <fieldset className="modal__radio-buttons">

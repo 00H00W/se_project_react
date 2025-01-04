@@ -21,7 +21,8 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  const [clothingItems, setClothingItems] = useState([]);
+  // const [clothingItems, setClothingItems] = useState([]); temporarily disabled for github pages deployment
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
 
   useEffect(() => {
     get().then(setClothingItems).catch(console.error);
@@ -82,7 +83,15 @@ function App() {
                 />
               }
             />
-            <Route path="/profile" element={<Profile />} />
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  clothingItems={clothingItems}
+                  onAddButtonClick={openAddGarmentModal}
+                />
+              }
+            />
           </Routes>
           <Footer />
         </div>

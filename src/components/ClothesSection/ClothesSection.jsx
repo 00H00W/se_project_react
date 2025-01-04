@@ -1,14 +1,13 @@
 import "./ClothesSection.css";
-import { defaultClothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
 
-function ClothesSection() {
+function ClothesSection({ clothingItems, onAddButtonClick }) {
   return (
     <section className="clothes-section">
       <div className="clothes-section__header">
         <p>Your items</p>
         <button
-          //   onClick={onAddButtonClick}
+          onClick={onAddButtonClick}
           type="button"
           className="clothes-section__add-clothes-button"
         >
@@ -16,7 +15,7 @@ function ClothesSection() {
         </button>
       </div>
       <ul className="clothes-section__list">
-        {defaultClothingItems.map((item) => {
+        {clothingItems.map((item) => {
           return (
             <ItemCard
               //   onCardClicked={onCardClicked}
