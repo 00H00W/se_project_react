@@ -27,10 +27,12 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  text-decoration: none;
 }
 
 .header__username {
   margin: 0;
+  color: #000;
 }
 
 .header__avatar {

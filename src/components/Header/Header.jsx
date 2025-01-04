@@ -3,6 +3,7 @@ import logoImg from "../../assets/logo.svg";
 import avatarImg from "../../assets/avatar.svg";
 import React from "react";
 import Toggle from "../Toggle/Toggle";
+import { NavLink, Link } from "react-router-dom";
 
 function Header({ onAddButtonClick, city }) {
   const currentDate = new Date().toLocaleString("default", {
@@ -18,7 +19,10 @@ function Header({ onAddButtonClick, city }) {
 
   return (
     <header className="header">
-      <img className="header__logo" src={logoImg} alt="WTWR Logo" />
+      <NavLink to={"/se_project_react/"}>
+        <img className="header__logo" src={logoImg} alt="WTWR Logo" />
+      </NavLink>
+
       <p className="header__info">
         {currentDate}, {city}
       </p>
@@ -30,14 +34,17 @@ function Header({ onAddButtonClick, city }) {
       >
         + Add clothes
       </button>
-      <div className="header__user-container">
+      <NavLink
+        to={"/se_project_react/profile"}
+        className="header__user-container"
+      >
         <p className="header__username">Terrence Tegegne</p>
         <img
           className="header__avatar"
           src={avatarImg}
           alt="Terrence Tegegne"
         />
-      </div>
+      </NavLink>
     </header>
   );
 }
