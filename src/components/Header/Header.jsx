@@ -1,6 +1,6 @@
 import "./Header.css";
 import logoImg from "../../assets/logo.svg";
-import avatarImg from "../../assets/avatar.png";
+import avatarImg from "../../assets/avatar.svg";
 import React from "react";
 import Toggle from "../Toggle/Toggle";
 

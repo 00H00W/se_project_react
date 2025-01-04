@@ -8,6 +8,7 @@ import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, processWeatherData } from "../../utils/weatherApi";
 import { location, APIkey } from "../../utils/constants";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+import Profile from "../Profile/Profile";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -57,6 +58,7 @@ function App() {
             weatherData={weatherData}
             onCardClicked={openCardPreviewModal}
           />
+          <Profile></Profile>
           <Footer />
         </div>
         <ModalWithForm

@@ -1,0 +1,14 @@
+.sidebar__user-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sidebar__username {
+  margin: 0;
+}
+
+.sidebar__avatar {
+  width: 56px;
+  height: 56px;
+}
