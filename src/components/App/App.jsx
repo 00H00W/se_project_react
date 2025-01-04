@@ -73,7 +73,7 @@ function App() {
           />
           <Routes>
             <Route
-              path="/se_project_react/"
+              path="/"
               element={
                 <Main
                   clothingItems={clothingItems}
@@ -82,7 +82,7 @@ function App() {
                 />
               }
             />
-            <Route path="/se_project_react/profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
           <Footer />
         </div>

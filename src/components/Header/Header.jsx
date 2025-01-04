@@ -19,7 +19,7 @@ function Header({ onAddButtonClick, city }) {
 
   return (
     <header className="header">
-      <NavLink to={"/se_project_react/"}>
+      <NavLink to={"/"}>
         <img className="header__logo" src={logoImg} alt="WTWR Logo" />
       </NavLink>
 
@@ -34,10 +34,7 @@ function Header({ onAddButtonClick, city }) {
       >
         + Add clothes
       </button>
-      <NavLink
-        to={"/se_project_react/profile"}
-        className="header__user-container"
-      >
+      <NavLink to={"/profile"} className="header__user-container">
         <p className="header__username">Terrence Tegegne</p>
         <img
           className="header__avatar"
