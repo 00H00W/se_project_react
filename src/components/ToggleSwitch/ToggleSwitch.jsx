@@ -1,8 +1,8 @@
 import React from "react";
-import "./Toggle.css";
+import "./ToggleSwitch.css";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
-function Toggle({ id = "default-toggle" }) {
+function ToggleSwitch({ id = "default-toggle" }) {
   const unitContext = React.useContext(CurrentTemperatureUnitContext);
   const checked = unitContext.currentTemperatureUnit === "C";
   const onChange = unitContext.handleToggleSwitchChange;
@@ -40,4 +40,4 @@ function Toggle({ id = "default-toggle" }) {
   );
 }
 
-export default Toggle;
+export default ToggleSwitch;

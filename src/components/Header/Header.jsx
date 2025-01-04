@@ -2,7 +2,7 @@ import "./Header.css";
 import logoImg from "../../assets/logo.svg";
 import avatarImg from "../../assets/avatar.svg";
 import React from "react";
-import Toggle from "../Toggle/Toggle";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { NavLink, Link } from "react-router-dom";
 
 function Header({ onAddButtonClick, city }) {
@@ -26,7 +26,7 @@ function Header({ onAddButtonClick, city }) {
       <p className="header__info">
         {currentDate}, {city}
       </p>
-      <Toggle checked={checked} onChange={handleChange} />
+      <ToggleSwitch checked={checked} onChange={handleChange} />
       <button
         onClick={onAddButtonClick}
         type="button"
