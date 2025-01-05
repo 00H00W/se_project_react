@@ -21,7 +21,6 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  // const [clothingItems, setClothingItems] = useState([]); temporarily disabled for github pages deployment
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
 
   useEffect(() => {
@@ -45,13 +44,30 @@ function App() {
   };
   const handleAddItemSubmit = (item) => {
     closeActiveModal();
-    post(item);
-    get().then(setClothingItems).catch(console.error);
+    // add item locally
+    setClothingItems([
+      ...clothingItems,
+      { ...item, _id: clothingItems.length },
+    ]);
+    // add item to database and refresh
+    post(item)
+      .catch(console.error)
+      .finally(() => {
+        get().then(setClothingItems).catch(console.error);
+      });
   };
   const handleDeleteItem = () => {
     closeActiveModal();
-    remove(selectedCard._id);
-    get().then(setClothingItems).catch(console.error);
+    // remove item locally
+    setClothingItems(
+      clothingItems.filter((item) => item._id !== selectedCard._id)
+    );
+    // remove item from database and refresh
+    remove(selectedCard._id)
+      .catch(console.error)
+      .finally(() => {
+        get().then(setClothingItems).catch(console.error);
+      });
   };
 
   useEffect(() => {

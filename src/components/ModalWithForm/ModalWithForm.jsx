@@ -13,8 +13,6 @@ function ModalWithForm({
   const [valid, setValidity] = React.useState("false");
 
   const checkFormValidity = (e) => {
-    console.log("Haiii UwU");
-    console.log(e.currentTarget.checkValidity());
     setValidity(e.currentTarget.checkValidity());
   };
 
