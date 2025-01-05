@@ -105,6 +105,7 @@ function App() {
                 <Profile
                   clothingItems={clothingItems}
                   onAddButtonClick={openAddGarmentModal}
+                  onCardClicked={openCardPreviewModal}
                 />
               }
             />
