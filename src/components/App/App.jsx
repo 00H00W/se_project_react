@@ -46,12 +46,9 @@ function App() {
   const handleAddItemSubmit = (item) => {
     setLoading(true);
     postItem(item)
-      .then(() => {
+      .then((res) => {
         closeActiveModal();
-        setClothingItems([
-          { ...item, _id: clothingItems.length },
-          ...clothingItems,
-        ]);
+        setClothingItems([{ ...item, _id: res._id }, ...clothingItems]);
       })
       .catch(console.error)
       .finally(() => {
