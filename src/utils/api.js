@@ -12,12 +12,12 @@ function fetchCall(endpoint, method = "GET", body) {
   });
 }
 
-export function get() {
+export function getItems() {
   return fetchCall("/items");
 }
-export function post(body) {
+export function postItem(body) {
   return fetchCall("/items", "POST", JSON.stringify(body));
 }
-export function remove(id) {
+export function removeItem(id) {
   return fetchCall(`/items/${id}`, "DELETE");
 }

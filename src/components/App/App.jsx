@@ -10,7 +10,7 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 import Profile from "../Profile/Profile";
 import { Routes, Route } from "react-router-dom";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { get, post, remove } from "../../utils/api";
+import { getItems, postItem, removeItem } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -22,9 +22,10 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    get().then(setClothingItems).catch(console.error);
+    getItems().then(setClothingItems).catch(console.error);
   }, []);
 
   const openAddGarmentModal = () => {
@@ -43,30 +44,32 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
   const handleAddItemSubmit = (item) => {
-    closeActiveModal();
-    // add item locally
-    setClothingItems([
-      ...clothingItems,
-      { ...item, _id: clothingItems.length },
-    ]);
-    // add item to database and refresh
-    post(item)
+    setLoading(true);
+    postItem(item)
+      .then(() => {
+        closeActiveModal();
+        setClothingItems([
+          { ...item, _id: clothingItems.length },
+          ...clothingItems,
+        ]);
+      })
       .catch(console.error)
       .finally(() => {
-        get().then(setClothingItems).catch(console.error);
+        setLoading(false);
       });
   };
   const handleDeleteItem = () => {
-    closeActiveModal();
-    // remove item locally
-    setClothingItems(
-      clothingItems.filter((item) => item._id !== selectedCard._id)
-    );
-    // remove item from database and refresh
-    remove(selectedCard._id)
+    setLoading(true);
+    removeItem(selectedCard._id)
+      .then(() => {
+        closeActiveModal();
+        setClothingItems(
+          clothingItems.filter((item) => item._id !== selectedCard._id)
+        );
+      })
       .catch(console.error)
       .finally(() => {
-        get().then(setClothingItems).catch(console.error);
+        setLoading(false);
       });
   };
 
@@ -116,12 +119,14 @@ function App() {
           isOpen={activeModal === "add-garment"}
           closeActiveModal={closeActiveModal}
           onAddItem={handleAddItemSubmit}
+          isLoading={loading}
         />
         <ItemModal
           onCloseButtonClick={closeActiveModal}
           isOpen={activeModal === "preview"}
           selectedCard={selectedCard}
           onDeleteCard={handleDeleteItem}
+          isLoading={loading}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 import "./AddItemModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function AddItemModal({ closeActiveModal, isOpen, onAddItem }) {
+function AddItemModal({ closeActiveModal, isOpen, onAddItem, isLoading }) {
   const [name, setName] = React.useState("");
   const [image, setImage] = React.useState("");
   const [weather, setWeather] = React.useState("hot");
@@ -38,6 +38,7 @@ function AddItemModal({ closeActiveModal, isOpen, onAddItem }) {
       isOpen={isOpen}
       onCloseButtonClick={closeActiveModal}
       onSubmit={handleSubmit}
+      isLoading={isLoading}
     >
       <label htmlFor="name" className="modal__label">
         Name{" "}

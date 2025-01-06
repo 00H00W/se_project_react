@@ -59,6 +59,7 @@
 }
 .modal__label--radio {
   color: rgba(0, 0, 0, 0.5);
+  user-select: none;
 }
 .modal__label--radio:has(> .modal__radio:checked) {
   color: black;

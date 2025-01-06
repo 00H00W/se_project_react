@@ -1,6 +1,6 @@
 import "./ModalWithForm.css";
 import closeIcon from "../../assets/close-icon.svg";
-import React from "react";
+import React, { useEffect } from "react";
 
 function ModalWithForm({
   children,
@@ -9,6 +9,7 @@ function ModalWithForm({
   isOpen,
   onCloseButtonClick,
   onSubmit,
+  isLoading,
 }) {
   const [valid, setValidity] = React.useState("false");
 
@@ -34,11 +35,11 @@ function ModalWithForm({
         >
           {children}
           <button
-            disabled={!valid}
+            disabled={!valid || isLoading}
             type="submit"
             className="modal__submit-button"
           >
-            {submit}
+            {isLoading ? "Loading..." : submit}
           </button>
         </form>
       </div>
