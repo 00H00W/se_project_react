@@ -26,6 +26,8 @@ Functionality:
 
 ## Deployment
 
+This project requires the backend server [here](https://github.com/00H00W/se_project_express) to run.
+
 - [git hub pages](https://00h00w.github.io/se_project_react/)
 - [git hub repo](https://github.com/00H00W/se_project_react)
 
