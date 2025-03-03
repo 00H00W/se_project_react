@@ -10,12 +10,13 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 import Profile from "../Profile/Profile";
 import { Routes, Route } from "react-router-dom";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { getItems, postItem, removeItem } from "../../utils/api";
+import { getItems, postItem, removeItem, updateUser } from "../../utils/api";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import * as auth from "../../utils/auth";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -29,7 +30,12 @@ function App() {
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [loading, setLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({
+    avatar: "",
+    email: "",
+    name: "",
+    token: "",
+  });
 
   useEffect(() => {
     getItems().then(setClothingItems).catch(console.error);
@@ -48,6 +54,9 @@ function App() {
   const openLoginModal = () => {
     setActiveModal("login");
   };
+  const openEditModal = () => {
+    setActiveModal("edit-profile");
+  };
   const closeActiveModal = () => {
     setActiveModal("");
   };
@@ -57,6 +66,7 @@ function App() {
       ? setCurrentTemperatureUnit("C")
       : setCurrentTemperatureUnit("F");
   };
+
   const handleAddItemSubmit = (item) => {
     setLoading(true);
     postItem(item, currentUser.token)
@@ -113,6 +123,17 @@ function App() {
       .catch(console.error)
       .finally(setLoading(false));
   };
+  const handleEditProfile = (data) => {
+    setLoading(true);
+    return updateUser(data, currentUser.token)
+      .then((response) => {
+        setCurrentUser({ ...response.data, token: currentUser.token });
+        closeActiveModal();
+      })
+      .catch(console.error)
+      .finally(setLoading(false));
+  };
+  const handleLogOut = () => {};
 
   useEffect(() => {
     getWeather(location, APIkey)
@@ -169,6 +190,8 @@ function App() {
                       clothingItems={clothingItems}
                       onAddButtonClick={openAddGarmentModal}
                       onCardClicked={openCardPreviewModal}
+                      onEditProfile={openEditModal}
+                      onLogOut={handleLogOut}
                     />
                   </ProtectedRoute>
                 }
@@ -202,6 +225,12 @@ function App() {
             isLoading={loading}
             openRegisterModal={openRegisterModal}
             handleAuthorization={handleAuthorization}
+          />
+          <EditProfileModal
+            isOpen={activeModal === "edit-profile"}
+            closeActiveModal={closeActiveModal}
+            isLoading={loading}
+            onSubmit={handleEditProfile}
           />
         </CurrentTemperatureUnitContext.Provider>
       </div>

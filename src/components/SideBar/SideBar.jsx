@@ -1,7 +1,7 @@
 import "./SideBar.css";
 import avatarImg from "../../assets/avatar.svg";
 
-function SideBar() {
+function SideBar({ onEditProfile, onLogOut }) {
   return (
     <section className="sidebar">
       <div className="sidebar__user-container">
@@ -12,6 +12,12 @@ function SideBar() {
         />
         <p className="sidebar__username">Terrence Tegegne</p>
       </div>
+      <button onClick={onEditProfile} type="button">
+        Change profile data
+      </button>
+      <button onClick={onLogOut} type="button">
+        Log out
+      </button>
     </section>
   );
 }

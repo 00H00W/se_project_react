@@ -1,3 +1,7 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+}
 .sidebar__user-container {
   display: flex;
   align-items: center;

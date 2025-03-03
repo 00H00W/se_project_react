@@ -1,3 +1,5 @@
+import { json } from "react-router-dom";
+
 const baseUrl = "http://localhost:3001";
 const headers = { "Content-Type": "application/json" };
 
@@ -20,4 +22,7 @@ export function postItem(body, token) {
 }
 export function removeItem(id, token) {
   return fetchCall(`/items/${id}`, token, "DELETE");
+}
+export function updateUser(body, token) {
+  return fetchCall("/users/me", token, "PATCH", JSON.stringify(body));
 }
