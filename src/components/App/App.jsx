@@ -11,6 +11,7 @@ import Profile from "../Profile/Profile";
 import { Routes, Route } from "react-router-dom";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { getItems, postItem, removeItem } from "../../utils/api";
+import RegisterModal from "../RegisterModal/RegisterModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -34,6 +35,9 @@ function App() {
   const openCardPreviewModal = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
+  };
+  const openRegisterModal = () => {
+    setActiveModal("register");
   };
   const closeActiveModal = () => {
     setActiveModal("");
@@ -86,6 +90,7 @@ function App() {
         <div className="app__content">
           <Header
             onAddButtonClick={openAddGarmentModal}
+            onSignUpButtonClick={openRegisterModal}
             city={weatherData.city}
           />
           <Routes>
@@ -123,6 +128,11 @@ function App() {
           isOpen={activeModal === "preview"}
           selectedCard={selectedCard}
           onDeleteCard={handleDeleteItem}
+          isLoading={loading}
+        />
+        <RegisterModal
+          isOpen={activeModal === "register"}
+          closeActiveModal={closeActiveModal}
           isLoading={loading}
         />
       </CurrentTemperatureUnitContext.Provider>

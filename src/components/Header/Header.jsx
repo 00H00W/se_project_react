@@ -5,7 +5,7 @@ import React from "react";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { NavLink, Link } from "react-router-dom";
 
-function Header({ onAddButtonClick, city }) {
+function Header({ onAddButtonClick, onSignUpButtonClick, city }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -42,6 +42,13 @@ function Header({ onAddButtonClick, city }) {
           alt="Terrence Tegegne"
         />
       </NavLink>
+      <button
+        onClick={onSignUpButtonClick}
+        type="button"
+        className="header__add-clothes-button"
+      >
+        Sign Up
+      </button>
     </header>
   );
 }
