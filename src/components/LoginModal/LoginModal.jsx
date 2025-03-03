@@ -1,13 +1,13 @@
 import React from "react";
-import "./RegisterModal.css";
+import "./LoginModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function RegisterModal({
+function LoginModal({
   closeActiveModal,
   isOpen,
   handleRegistration,
   isLoading,
-  openLoginModal,
+  openRegisterModal,
 }) {
   const [data, setData] = React.useState({
     email: "",
@@ -42,14 +42,14 @@ function RegisterModal({
 
   return (
     <ModalWithForm
-      title="Sign up"
-      submit="Next"
+      title="Log in"
+      submit="Log in"
       isOpen={isOpen}
       onCloseButtonClick={closeActiveModal}
       onSubmit={handleSubmit}
       isLoading={isLoading}
-      altSubmit={"or Log in"}
-      onAltSubmit={openLoginModal}
+      altSubmit={"or Register"}
+      onAltSubmit={openRegisterModal}
     >
       <label htmlFor="email" className="modal__label">
         Email{" "}
@@ -77,32 +77,8 @@ function RegisterModal({
           required
         />
       </label>
-      <label htmlFor="name" className="modal__label">
-        Name{" "}
-        <input
-          id="name"
-          type="text"
-          name="name"
-          className="modal__input"
-          placeholder="Name"
-          value={data.name}
-          onChange={handleChange}
-        />
-      </label>
-      <label htmlFor="avatarUrl" className="modal__label">
-        Avatar URL{" "}
-        <input
-          id="avatarUrl"
-          type="link"
-          name="avatarUrl"
-          className="modal__input"
-          placeholder="Avatar URL"
-          value={data.avatarUrl}
-          onChange={handleChange}
-        />
-      </label>
     </ModalWithForm>
   );
 }
 
-export default RegisterModal;
+export default LoginModal;

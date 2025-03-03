@@ -12,6 +12,7 @@ import { Routes, Route } from "react-router-dom";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { getItems, postItem, removeItem } from "../../utils/api";
 import RegisterModal from "../RegisterModal/RegisterModal";
+import LoginModal from "../LoginModal/LoginModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -39,9 +40,13 @@ function App() {
   const openRegisterModal = () => {
     setActiveModal("register");
   };
+  const openLoginModal = () => {
+    setActiveModal("login");
+  };
   const closeActiveModal = () => {
     setActiveModal("");
   };
+
   const handleToggleSwitchChange = () => {
     currentTemperatureUnit === "F"
       ? setCurrentTemperatureUnit("C")
@@ -91,6 +96,7 @@ function App() {
           <Header
             onAddButtonClick={openAddGarmentModal}
             onSignUpButtonClick={openRegisterModal}
+            onLogInButtonClick={openLoginModal}
             city={weatherData.city}
           />
           <Routes>
@@ -134,6 +140,13 @@ function App() {
           isOpen={activeModal === "register"}
           closeActiveModal={closeActiveModal}
           isLoading={loading}
+          openLoginModal={openLoginModal}
+        />
+        <LoginModal
+          isOpen={activeModal === "login"}
+          closeActiveModal={closeActiveModal}
+          isLoading={loading}
+          openRegisterModal={openRegisterModal}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

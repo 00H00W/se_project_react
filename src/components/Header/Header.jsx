@@ -5,7 +5,12 @@ import React from "react";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { NavLink, Link } from "react-router-dom";
 
-function Header({ onAddButtonClick, onSignUpButtonClick, city }) {
+function Header({
+  onAddButtonClick,
+  onSignUpButtonClick,
+  onLogInButtonClick,
+  city,
+}) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -48,6 +53,13 @@ function Header({ onAddButtonClick, onSignUpButtonClick, city }) {
         className="header__add-clothes-button"
       >
         Sign Up
+      </button>
+      <button
+        onClick={onLogInButtonClick}
+        type="button"
+        className="header__add-clothes-button"
+      >
+        Log In
       </button>
     </header>
   );
