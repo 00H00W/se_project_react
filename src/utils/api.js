@@ -23,6 +23,13 @@ export function postItem(body, token) {
 export function removeItem(id, token) {
   return fetchCall(`/items/${id}`, token, "DELETE");
 }
+
+export function addCardLike(id, token) {
+  return fetchCall(`/items/${id}/likes`, token, "PUT");
+}
+export function removeCardLike(id, token) {
+  return fetchCall(`/items/${id}/likes`, token, "DELETE");
+}
 export function updateUser(body, token) {
   return fetchCall("/users/me", token, "PATCH", JSON.stringify(body));
 }

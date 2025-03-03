@@ -10,7 +10,7 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 import Profile from "../Profile/Profile";
 import { Routes, Route } from "react-router-dom";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { getItems, postItem, removeItem, updateUser } from "../../utils/api";
+import * as api from "../../utils/api";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
@@ -38,7 +38,7 @@ function App() {
   });
 
   useEffect(() => {
-    getItems().then(setClothingItems).catch(console.error);
+    api.getItems().then(setClothingItems).catch(console.error);
   }, []);
 
   const openAddGarmentModal = () => {
@@ -69,7 +69,8 @@ function App() {
 
   const handleAddItemSubmit = (item) => {
     setLoading(true);
-    postItem(item, currentUser.token)
+    api
+      .postItem(item, currentUser.token)
       .then((res) => {
         closeActiveModal();
         setClothingItems([{ ...item, _id: res._id }, ...clothingItems]);
@@ -81,7 +82,8 @@ function App() {
   };
   const handleDeleteItem = () => {
     setLoading(true);
-    removeItem(selectedCard._id, currentUser.token)
+    api
+      .removeItem(selectedCard._id, currentUser.token)
       .then(() => {
         closeActiveModal();
         setClothingItems(
@@ -125,7 +127,8 @@ function App() {
   };
   const handleEditProfile = (data) => {
     setLoading(true);
-    return updateUser(data, currentUser.token)
+    return api
+      .updateUser(data, currentUser.token)
       .then((response) => {
         setCurrentUser({ ...response.data, token: currentUser.token });
         closeActiveModal();
@@ -134,6 +137,32 @@ function App() {
       .finally(setLoading(false));
   };
   const handleLogOut = () => {};
+
+  const handleCardLike = ({ _id, likes }) => {
+    const token = localStorage.getItem("jwt");
+    // Check if this card is not currently liked
+    !likes.includes(currentUser._id)
+      ? // if so, send a request to add the user's id to the card's likes array
+        api
+          // the first argument is the card's id
+          .addCardLike(_id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === _id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err))
+      : // if not, send a request to remove the user's id from the card's likes array
+        api
+          // the first argument is the card's id
+          .removeCardLike(_id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === _id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
 
   useEffect(() => {
     getWeather(location, APIkey)
@@ -179,6 +208,7 @@ function App() {
                     clothingItems={clothingItems}
                     weatherData={weatherData}
                     onCardClicked={openCardPreviewModal}
+                    onCardLike={handleCardLike}
                   />
                 }
               />
@@ -190,6 +220,7 @@ function App() {
                       clothingItems={clothingItems}
                       onAddButtonClick={openAddGarmentModal}
                       onCardClicked={openCardPreviewModal}
+                      onCardLike={handleCardLike}
                       onEditProfile={openEditModal}
                       onLogOut={handleLogOut}
                     />
