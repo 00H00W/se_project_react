@@ -4,6 +4,7 @@ import React from "react";
 
 function ItemCard({ item, onCardClicked, onCardLike }) {
   const userData = React.useContext(CurrentUserContext);
+  const liked = item.likes.includes(userData._id);
 
   const handleCardClicked = () => {
     onCardClicked(item);
@@ -16,14 +17,21 @@ function ItemCard({ item, onCardClicked, onCardLike }) {
 
   return (
     <li className="item-card">
-      <h2 className="item-card__text">{item.name}</h2>
-      {(userData._id === item.owner || item.likes.includes(userData._id)) && (
-        <button onClick={handleCardLiked}>like</button>
-      )}
+      <div className="item-card__label">
+        <h2 className="item-card__text">{item.name}</h2>
+        {(userData._id === item.owner || liked) && (
+          <button
+            className={`item-card__like-button${
+              liked ? " item-card__like-button_liked" : ""
+            }`}
+            onClick={handleCardLiked}
+          ></button>
+        )}
+      </div>
       <img
         onClick={handleCardClicked}
         className="item-card__image"
-        src={item.link}
+        src={item.imageUrl}
         alt={item.name}
       />
     </li>
