@@ -28,6 +28,7 @@ function App() {
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [loading, setLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     getItems().then(setClothingItems).catch(console.error);
@@ -57,7 +58,7 @@ function App() {
   };
   const handleAddItemSubmit = (item) => {
     setLoading(true);
-    postItem(item)
+    postItem(item, token)
       .then((res) => {
         closeActiveModal();
         setClothingItems([{ ...item, _id: res._id }, ...clothingItems]);
@@ -69,7 +70,7 @@ function App() {
   };
   const handleDeleteItem = () => {
     setLoading(true);
-    removeItem(selectedCard._id)
+    removeItem(selectedCard._id, token)
       .then(() => {
         closeActiveModal();
         setClothingItems(
@@ -110,6 +111,20 @@ function App() {
     getWeather(location, APIkey)
       .then((data) => {
         setWeatherData(processWeatherData(data));
+      })
+      .catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    console.log(token);
+    auth
+      .checkToken(token)
+      .then((response) => {
+        if (response && response.name) {
+          setIsLoggedIn(true);
+          setToken(token);
+        }
       })
       .catch(console.error);
   }, []);
