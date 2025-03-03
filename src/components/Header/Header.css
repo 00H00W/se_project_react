@@ -41,14 +41,5 @@
   height: 40px;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.5);
-  background: rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.header__avatar-text {
-  text-align: center;
-  font-size: 20px;
-  color: rgba(255, 255, 255, 1);
-  text-decoration: none;
+  box-sizing: border-box;
 }

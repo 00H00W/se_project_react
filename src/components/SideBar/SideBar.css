@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  margin: 0 0 24px;
 }
 
 .sidebar__username {
@@ -15,4 +16,17 @@
 .sidebar__avatar {
   width: 56px;
   height: 56px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+}
+
+.sidebar__button {
+  margin: 0 0 8px;
+  padding: 0;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
 }

@@ -5,6 +5,7 @@ import React from "react";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { NavLink, Link } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import TextAvatar from "../TextAvatar/TextAvatar";
 
 function Header({
   onAddButtonClick,
@@ -54,9 +55,7 @@ function Header({
               />
             ) : (
               <div className="header__avatar">
-                <p className="header__avatar-text">
-                  {userData.name.substring(0, 1).toUpperCase()}
-                </p>
+                <TextAvatar text={userData.name} />
               </div>
             )}
           </NavLink>
