@@ -5,7 +5,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 function LoginModal({
   closeActiveModal,
   isOpen,
-  handleRegistration,
+  handleAuthorization,
   isLoading,
   openRegisterModal,
 }) {
@@ -33,7 +33,7 @@ function LoginModal({
   }
   function handleSubmit(e) {
     e.preventDefault();
-    handleRegistration(data);
+    handleAuthorization(data);
   }
 
   return (

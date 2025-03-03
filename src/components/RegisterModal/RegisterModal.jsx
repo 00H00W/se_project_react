@@ -13,7 +13,7 @@ function RegisterModal({
     email: "",
     password: "",
     name: "",
-    avatarUrl: "",
+    avatar: "",
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,7 +32,7 @@ function RegisterModal({
       email: "",
       password: "",
       name: "",
-      avatarUrl: "",
+      avatar: "",
     });
   }
   function handleSubmit(e) {
@@ -94,7 +94,7 @@ function RegisterModal({
         <input
           id="avatarUrl"
           type="url"
-          name="avatarUrl"
+          name="avatar"
           className="modal__input"
           placeholder="Avatar URL"
           value={data.avatarUrl}

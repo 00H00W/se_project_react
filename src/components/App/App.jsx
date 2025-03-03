@@ -14,6 +14,7 @@ import { getItems, postItem, removeItem } from "../../utils/api";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import * as auth from "../../utils/auth";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -26,6 +27,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [loading, setLoading] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     getItems().then(setClothingItems).catch(console.error);
@@ -79,6 +81,30 @@ function App() {
         setLoading(false);
       });
   };
+  const handleRegistration = (data) => {
+    setLoading(true);
+    auth
+      .signup(data)
+      .then((response) => {
+        return handleAuthorization(data);
+      })
+      .catch(console.error)
+      .finally(setLoading(false));
+  };
+  const handleAuthorization = (data) => {
+    setLoading(true);
+    return auth
+      .signin(data)
+      .then((response) => {
+        if (response.token) {
+          localStorage.setItem("jwt", response.token);
+          closeActiveModal();
+          setIsLoggedIn(true);
+        }
+      })
+      .catch(console.error)
+      .finally(setLoading(false));
+  };
 
   useEffect(() => {
     getWeather(location, APIkey)
@@ -114,7 +140,7 @@ function App() {
             <Route
               path="/profile"
               element={
-                <ProtectedRoute isLoggedIn={false}>
+                <ProtectedRoute isLoggedIn={isLoggedIn}>
                   <Profile
                     clothingItems={clothingItems}
                     onAddButtonClick={openAddGarmentModal}
@@ -144,12 +170,14 @@ function App() {
           closeActiveModal={closeActiveModal}
           isLoading={loading}
           openLoginModal={openLoginModal}
+          handleRegistration={handleRegistration}
         />
         <LoginModal
           isOpen={activeModal === "login"}
           closeActiveModal={closeActiveModal}
           isLoading={loading}
           openRegisterModal={openRegisterModal}
+          handleAuthorization={handleAuthorization}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
