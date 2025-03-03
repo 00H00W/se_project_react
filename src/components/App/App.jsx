@@ -114,7 +114,6 @@ function App() {
       .then((response) => {
         if (response.token) {
           localStorage.setItem("jwt", response.token);
-          setCurrentUser(response);
           closeActiveModal();
           setIsLoggedIn(true);
           return auth.getUserData(response.token).then((data) => {
@@ -136,7 +135,16 @@ function App() {
       .catch(console.error)
       .finally(setLoading(false));
   };
-  const handleLogOut = () => {};
+  const handleLogOut = () => {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    setCurrentUser({
+      avatar: "",
+      email: "",
+      name: "",
+      token: "",
+    });
+  };
 
   const handleCardLike = ({ _id, likes }) => {
     const token = localStorage.getItem("jwt");
