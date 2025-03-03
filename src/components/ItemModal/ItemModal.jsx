@@ -1,5 +1,7 @@
 import "./ItemModal.css";
 import closeIcon from "../../assets/close-icon.svg";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import React from "react";
 
 function ItemModal({
   isOpen,
@@ -8,6 +10,9 @@ function ItemModal({
   onDeleteCard,
   isLoading,
 }) {
+  const userData = React.useContext(CurrentUserContext);
+  const isOwn = selectedCard.owner === userData._id;
+
   return (
     <div className={`modal  ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__content modal__content_type_image">
@@ -30,13 +35,15 @@ function ItemModal({
               Weather: {selectedCard.weather}
             </p>
           </div>
-          <button
-            disabled={isLoading}
-            onClick={onDeleteCard}
-            className="modal__delete-button"
-          >
-            {isLoading ? "Loading..." : "Delete item"}
-          </button>
+          {isOwn && (
+            <button
+              disabled={isLoading}
+              onClick={onDeleteCard}
+              className="modal__delete-button"
+            >
+              {isLoading ? "Loading..." : "Delete item"}
+            </button>
+          )}
         </div>
       </div>
     </div>
