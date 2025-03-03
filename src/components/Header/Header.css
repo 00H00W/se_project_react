@@ -17,13 +17,14 @@
 }
 
 .header__add-clothes-button {
-  margin: 0 20px;
+  margin: 0 0 0 20px;
   border: none;
   background: none;
   padding: 0;
 }
 
 .header__user-container {
+  margin: 0 0 0 20px;
   display: flex;
   align-items: center;
   gap: 12px;

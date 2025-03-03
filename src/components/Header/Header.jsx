@@ -34,30 +34,33 @@ function Header({
         {currentDate}, {city}
       </p>
       <ToggleSwitch checked={checked} onChange={handleChange} />
-      <button
-        onClick={onAddButtonClick}
-        type="button"
-        className="header__add-clothes-button"
-      >
-        + Add clothes
-      </button>
+
       {userData.token ? (
-        <NavLink to={"/profile"} className="header__user-container">
-          <p className="header__username">{userData.name}</p>
-          {userData.avatar ? (
-            <img
-              className="header__avatar"
-              src={userData.avatar}
-              alt={userData.name}
-            />
-          ) : (
-            <div className="header__avatar">
-              <p className="header__avatar-text">
-                {userData.name.substring(0, 1).toUpperCase()}
-              </p>
-            </div>
-          )}
-        </NavLink>
+        <>
+          <button
+            onClick={onAddButtonClick}
+            type="button"
+            className="header__add-clothes-button"
+          >
+            + Add clothes
+          </button>
+          <NavLink to={"/profile"} className="header__user-container">
+            <p className="header__username">{userData.name}</p>
+            {userData.avatar ? (
+              <img
+                className="header__avatar"
+                src={userData.avatar}
+                alt={userData.name}
+              />
+            ) : (
+              <div className="header__avatar">
+                <p className="header__avatar-text">
+                  {userData.name.substring(0, 1).toUpperCase()}
+                </p>
+              </div>
+            )}
+          </NavLink>
+        </>
       ) : (
         <>
           <button
