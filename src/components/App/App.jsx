@@ -13,6 +13,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import { getItems, postItem, removeItem } from "../../utils/api";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -113,11 +114,13 @@ function App() {
             <Route
               path="/profile"
               element={
-                <Profile
-                  clothingItems={clothingItems}
-                  onAddButtonClick={openAddGarmentModal}
-                  onCardClicked={openCardPreviewModal}
-                />
+                <ProtectedRoute isLoggedIn={false}>
+                  <Profile
+                    clothingItems={clothingItems}
+                    onAddButtonClick={openAddGarmentModal}
+                    onCardClicked={openCardPreviewModal}
+                  />
+                </ProtectedRoute>
               }
             />
           </Routes>
