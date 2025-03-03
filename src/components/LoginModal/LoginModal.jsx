@@ -12,8 +12,6 @@ function LoginModal({
   const [data, setData] = React.useState({
     email: "",
     password: "",
-    name: "",
-    avatarUrl: "",
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,8 +29,6 @@ function LoginModal({
     setData({
       email: "",
       password: "",
-      name: "",
-      avatarUrl: "",
     });
   }
   function handleSubmit(e) {

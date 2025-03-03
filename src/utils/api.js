@@ -1,7 +1,7 @@
 const baseUrl = "http://localhost:3001";
 const headers = { "Content-Type": "application/json" };
 
-function fetchCall(endpoint, method = "GET", body) {
+export function fetchCall(endpoint, method = "GET", body) {
   return fetch(baseUrl + endpoint, {
     method: method,
     headers: headers,
