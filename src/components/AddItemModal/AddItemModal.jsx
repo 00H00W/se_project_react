@@ -18,7 +18,7 @@ function AddItemModal({ closeActiveModal, isOpen, onAddItem, isLoading }) {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    onAddItem({ name: name, link: image, weather: weather });
+    onAddItem({ name: name, imageUrl: image, weather: weather });
     // reset();
   }
   function handleNameChange(e) {
