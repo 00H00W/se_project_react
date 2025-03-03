@@ -93,7 +93,7 @@ function RegisterModal({
         Avatar URL{" "}
         <input
           id="avatarUrl"
-          type="link"
+          type="url"
           name="avatarUrl"
           className="modal__input"
           placeholder="Avatar URL"
