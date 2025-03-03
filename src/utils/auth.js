@@ -6,6 +6,6 @@ export function signup(body) {
 export function signin(body) {
   return fetchCall("/signin", "token", "POST", JSON.stringify(body));
 }
-export function checkToken(token) {
+export function getUserData(token) {
   return fetchCall("/users/me", token);
 }
