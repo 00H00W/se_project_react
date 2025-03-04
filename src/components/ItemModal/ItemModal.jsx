@@ -24,7 +24,7 @@ function ItemModal({
           <img src={closeIcon} alt="Close Icon" />
         </button>
         <img
-          src={selectedCard.link}
+          src={selectedCard.imageUrl}
           alt={selectedCard.name}
           className="modal__image"
         />
