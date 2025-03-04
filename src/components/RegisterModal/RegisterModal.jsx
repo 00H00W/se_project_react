@@ -87,6 +87,7 @@ function RegisterModal({
           placeholder="Name"
           value={data.name}
           onChange={handleChange}
+          required
         />
       </label>
       <label htmlFor="avatarUrl" className="modal__label">
@@ -99,6 +100,7 @@ function RegisterModal({
           placeholder="Avatar URL"
           value={data.avatarUrl}
           onChange={handleChange}
+          required
         />
       </label>
     </ModalWithForm>
