@@ -4,14 +4,12 @@ import React from "react";
 
 function ItemCard({ item, onCardClicked, onCardLike }) {
   const userData = React.useContext(CurrentUserContext);
-  const liked = item.likes.includes(userData._id);
+  const liked = item.likes && item.likes.includes(userData._id);
 
   const handleCardClicked = () => {
     onCardClicked(item);
   };
   const handleCardLiked = () => {
-    // item.isLiked = item.isLiked ? true : false;
-    console.log(item);
     onCardLike(item);
   };
 
