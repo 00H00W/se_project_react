@@ -73,7 +73,7 @@ function App() {
       .postItem(item, currentUser.token)
       .then((res) => {
         closeActiveModal();
-        setClothingItems([{ ...item, _id: res._id }, ...clothingItems]);
+        setClothingItems([res, ...clothingItems]);
       })
       .catch(console.error)
       .finally(() => {
