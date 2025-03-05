@@ -67,62 +67,68 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
 
+  function handleSubmit(request) {
+    setLoading(true);
+    request()
+      .then(closeActiveModal)
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  }
+
   const handleAddItemSubmit = (item) => {
-    setLoading(true);
-    api
-      .postItem(item, currentUser.token)
-      .then((res) => {
-        closeActiveModal();
-        setClothingItems([res, ...clothingItems]);
-      })
-      .catch(console.error)
-      .finally(() => {
-        setLoading(false);
+    handleSubmit(() => {
+      return api.postItem(item, currentUser.token).then((item) => {
+        setClothingItems([item, ...clothingItems]);
       });
-  };
-  const handleDeleteItem = () => {
-    setLoading(true);
-    api
-      .removeItem(selectedCard._id, currentUser.token)
-      .then(() => {
-        closeActiveModal();
-        setClothingItems(
-          clothingItems.filter((item) => item._id !== selectedCard._id)
-        );
-      })
-      .catch(console.error)
-      .finally(() => {
-        setLoading(false);
-      });
+    });
   };
 
-  // TODO: clean up registration/authorization/token methods
+  const handleDeleteItem = () => {
+    handleSubmit(() => {
+      return api
+        .removeItem(selectedCard._id, currentUser.token)
+        .then((item) => {
+          setClothingItems(
+            clothingItems.filter((item) => item._id !== selectedCard._id)
+          );
+        });
+    });
+  };
+
   const handleRegistration = (data) => {
-    setLoading(true);
-    auth
-      .signup(data)
-      .then((response) => {
-        return handleAuthorization(data);
-      })
-      .catch(console.error)
-      .finally(setLoading(false));
+    handleSubmit(() => {
+      return auth
+        .signup(data)
+        .then(() => auth.signin(data))
+        .then((res) => {
+          if (res) {
+            localStorage.setItem("jwt", res.token);
+            closeActiveModal();
+            setIsLoggedIn(true);
+            return auth.getUserData(res.token);
+          } else return Promise.reject(res);
+        })
+        .then((res) => {
+          setCurrentUser({ ...res, token: localStorage.getItem("jwt") });
+        });
+    });
   };
   const handleAuthorization = (data) => {
-    setLoading(true);
-    return auth
-      .signin(data)
-      .then((response) => {
-        if (response.token) {
-          localStorage.setItem("jwt", response.token);
-          closeActiveModal();
-          setIsLoggedIn(true);
-          return auth.getUserData(response.token).then((data) => {
-            setCurrentUser({ ...data, token: response.token });
-          });
-        }
-      })
-      .catch(console.error)
-      .finally(setLoading(false));
+    handleSubmit(() => {
+      return auth
+        .signin(data)
+        .then((res) => {
+          if (res) {
+            localStorage.setItem("jwt", res.token);
+            closeActiveModal();
+            setIsLoggedIn(true);
+            return auth.getUserData(res.token);
+          } else return Promise.reject(res);
+        })
+        .then((res) => {
+          setCurrentUser({ ...res, token: localStorage.getItem("jwt") });
+        });
+    });
   };
   const handleEditProfile = (data) => {
     setLoading(true);
@@ -159,7 +165,7 @@ function App() {
               cards.map((item) => (item._id === _id ? updatedCard : item))
             );
           })
-          .catch((err) => console.log(err))
+          .catch(console.error)
       : // if not, send a request to remove the user's id from the card's likes array
         api
           // the first argument is the card's id
@@ -169,7 +175,7 @@ function App() {
               cards.map((item) => (item._id === _id ? updatedCard : item))
             );
           })
-          .catch((err) => console.log(err));
+          .catch(console.error);
   };
 
   useEffect(() => {

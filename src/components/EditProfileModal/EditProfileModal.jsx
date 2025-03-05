@@ -41,10 +41,10 @@ function EditProfileModal({ closeActiveModal, isOpen, onSubmit, isLoading }) {
       onSubmit={handleSubmit}
       isLoading={isLoading}
     >
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="edit-name" className="modal__label">
         Name{" "}
         <input
-          id="name"
+          id="edit-name"
           type="text"
           name="name"
           className="modal__input"
@@ -54,10 +54,10 @@ function EditProfileModal({ closeActiveModal, isOpen, onSubmit, isLoading }) {
           required
         />
       </label>
-      <label htmlFor="imageUrl" className="modal__label">
+      <label htmlFor="edit-imageUrl" className="modal__label">
         Image{" "}
         <input
-          id="imageUrl"
+          id="edit-imageUrl"
           type="url"
           name="avatar"
           className="modal__input"

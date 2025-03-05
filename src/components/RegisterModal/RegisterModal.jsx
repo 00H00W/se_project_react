@@ -51,10 +51,10 @@ function RegisterModal({
       altSubmit={"or Log in"}
       onAltSubmit={openLoginModal}
     >
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="register-email" className="modal__label">
         Email{" "}
         <input
-          id="email"
+          id="register-email"
           type="email"
           name="email"
           className="modal__input"
@@ -64,10 +64,10 @@ function RegisterModal({
           required
         />
       </label>
-      <label htmlFor="password" className="modal__label">
+      <label htmlFor="register-password" className="modal__label">
         Password{" "}
         <input
-          id="password"
+          id="register-password"
           type="password"
           name="password"
           className="modal__input"
@@ -77,10 +77,10 @@ function RegisterModal({
           required
         />
       </label>
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="register-name" className="modal__label">
         Name{" "}
         <input
-          id="name"
+          id="register-name"
           type="text"
           name="name"
           className="modal__input"
@@ -90,15 +90,15 @@ function RegisterModal({
           required
         />
       </label>
-      <label htmlFor="avatarUrl" className="modal__label">
+      <label htmlFor="register-avatarUrl" className="modal__label">
         Avatar URL{" "}
         <input
-          id="avatarUrl"
+          id="register-avatarUrl"
           type="url"
           name="avatar"
           className="modal__input"
           placeholder="Avatar URL"
-          value={data.avatarUrl}
+          value={data.avatar}
           onChange={handleChange}
           required
         />
