@@ -1,6 +1,9 @@
 import { json } from "react-router-dom";
 
-const baseUrl = "http://localhost:3001";
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.wtw.jumpingcrab.com"
+    : "http://localhost:3001";
 const headers = { "Content-Type": "application/json" };
 
 export function fetchCall(endpoint, token, method = "GET", body) {

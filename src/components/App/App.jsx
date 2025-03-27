@@ -99,7 +99,7 @@ function App() {
     handleSubmit(() => {
       return auth
         .signup(data)
-        .then(() => auth.signin(data))
+        .then(() => auth.signin({ email: data.email, password: data.password }))
         .then((res) => {
           if (res) {
             localStorage.setItem("jwt", res.token);
